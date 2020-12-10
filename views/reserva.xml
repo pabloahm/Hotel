@@ -8,9 +8,28 @@
         <tree>
           <field name="tipo"/>
           <field name="numero"/>
-          <field name="cantidad_camas"/>
+          <field name="descripcion"/>
           <field name="precio"/>
         </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="reserva.habitaciones_view">
+      <field name="name">Habitaciones</field>
+      <field name="model">reserva.habitaciones</field>
+      <field name="arch" type="xml">
+        <form string="Habitaciones">
+          <sheet>
+            <group>
+              <field name="tipo"/>
+              <field name="numero"/>
+            </group>
+            <group>
+              <field name="descripcion"/>
+              <field name="precio"/>
+            </group>
+          </sheet>
+        </form>
       </field>
     </record>
 
