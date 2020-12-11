@@ -35,7 +35,7 @@ class ServicioReserva(models.Model):
     _name = 'reserva.servicio_reserva'
 
     nombre = fields.Char(string="Cliente", required=True)
-    empresa = fields.Char(string="Nombre Empresa")
+    observacion = fields.Char(string="Observaciones")
     fecha = fields.Date(string="Fecha Reserva", required=True)
     hora_desde = fields.Datetime(string="Hora Inicio", required=True)
     num_horas = fields.Integer(string="Cantidad Horas", required=True)

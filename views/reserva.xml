@@ -34,7 +34,7 @@
     </record>
 
     <record model="ir.actions.act_window" id="reserva.habitaciones_action_window">
-      <field name="name">Habitaciones window</field>
+      <field name="name">Habitaciones</field>
       <field name="res_model">reserva.habitaciones</field>
       <field name="view_mode">tree,form</field>
     </record>
@@ -52,8 +52,56 @@
       </field>
     </record>
 
+<!-- Listado Servicios -->
+   <record model="ir.ui.view" id="reserva.servicio_list">
+      <field name="name">Servicios</field>
+      <field name="model">reserva.servicio</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="servicio"/>
+          <field name="capacidad"/>
+          <field name="valor_hora"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="reserva.servicio_view">
+      <field name="name">Servicios</field>
+      <field name="model">reserva.servicio</field>
+      <field name="arch" type="xml">
+        <form string="Servicios">
+          <sheet>
+            <group>
+              <field name="servicio"/>
+              <field name="capacidad"/>
+              <field name="valor_hora"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="reserva.servicio_action_window">
+      <field name="name">Servicios</field>
+      <field name="res_model">reserva.servicio</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.server" id="reserva.servicio_action_server">
+      <field name="name">Servicios server</field>
+      <field name="model_id" ref="model_reserva_servicio"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+
   <!-- Listado Cliente Reserva -->
-   <record model="ir.ui.view" id="reserva.cliente_reserva_list">
+   <record model="ir.ui.view" id="reserva.clientereserva_list">
       <field name="name">Reserva Cliente</field>
       <field name="model">reserva.cliente_reserva</field>
       <field name="arch" type="xml">
@@ -67,13 +115,33 @@
       </field>
     </record>
 
-    <record model="ir.actions.act_window" id="reserva.cliente_reserva_action_window">
-      <field name="name">Cliente Reserva window</field>
+    <record model="ir.ui.view" id="reserva.clientereserva_view">
+      <field name="name">Reserva Cliente</field>
+      <field name="model">reserva.cliente_reserva</field>
+      <field name="arch" type="xml">
+        <form string="Habitaciones">
+          <sheet>
+            <group>
+              <field name="nombre"/>
+              <field name="rut"/>
+            </group>
+            <group>
+              <field name="fecha_desde"/>
+              <field name="fecha_hasta"/>
+              <field name="habitacion_id"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="reserva.clientereserva_action_window">
+      <field name="name">Cliente Reserva</field>
       <field name="res_model">reserva.cliente_reserva</field>
       <field name="view_mode">tree,form</field>
     </record>
 
-    <record model="ir.actions.server" id="reserva.cliente_reserva_action_server">
+    <record model="ir.actions.server" id="reserva.clientereserva_action_server">
       <field name="name">Cliente Reserva server</field>
       <field name="model_id" ref="model_reserva_cliente_reserva"/>
       <field name="state">code</field>
@@ -86,8 +154,64 @@
       </field>
     </record>
 
+   <!-- Listado Reserva Servicio -->
+   <record model="ir.ui.view" id="reserva.servicioreserva_list">
+      <field name="name">Reserva Servicios</field>
+      <field name="model">reserva.servicio_reserva</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="nombre"/>
+          <field name="observacion"/>
+          <field name="fecha"/>
+          <field name="hora_desde"/>
+          <field name="num_horas"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="reserva.servicioreserva_view">
+      <field name="name">Reserva Servicios</field>
+      <field name="model">reserva.servicio_reserva</field>
+      <field name="arch" type="xml">
+        <form string="Habitaciones">
+          <sheet>
+            <group>
+            <field name="nombre"/>
+            <field name="observacion"/>
+            </group>
+            <group>
+              <field name="fecha"/>
+              <field name="hora_desde"/>
+              <field name="num_horas"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="reserva.servicioreserva_action_window">
+      <field name="name">Reserva Servicios</field>
+      <field name="res_model">reserva.servicio_reserva</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.server" id="reserva.servicioreserva_action_server">
+      <field name="name">reserva Servicios server</field>
+      <field name="model_id" ref="model_reserva_servicio_reserva"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+
     <menuitem name="Reservas" id="reserva.menu_root"/>
     <menuitem name="Habitacion" id="reserva.menu_habitaciones" parent="reserva.menu_root" action="reserva.habitaciones_action_window"/>    
-    <menuitem name="Cliente Reserva" id="reserva.menu_cliente_reserva" parent="reserva.menu_root" action="reserva.cliente_reserva_action_window"/>    
+    <menuitem name="Servicio" id="reserva.menu_servicio" parent="reserva.menu_root" action="reserva.servicio_action_window"/>    
+    <menuitem name="Cliente Reserva" id="reserva.menu_cliente_reserva" parent="reserva.menu_root" action="reserva.clientereserva_action_window"/>    
+    <menuitem name="Reserva Servicios" id="reserva.menu_servicio_reserva" parent="reserva.menu_root" action="reserva.servicioreserva_action_window"/>    
   </data>
 </odoo>
