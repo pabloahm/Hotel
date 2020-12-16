@@ -9,7 +9,7 @@
           <field name="tipo"/>
           <field name="numero"/>
           <field name="descripcion"/>
-          <field name="precio"/>
+          <field name="precio" widget="monetary" />
         </tree>
       </field>
     </record>
@@ -162,6 +162,7 @@
         <tree>
           <field name="nombre"/>
           <field name="observacion"/>
+          <field name="servicio_id"/>
           <field name="fecha"/>
           <field name="hora_desde"/>
           <field name="num_horas"/>
@@ -180,6 +181,7 @@
             <field name="observacion"/>
             </group>
             <group>
+              <field name="servicio_id"/>
               <field name="fecha"/>
               <field name="hora_desde"/>
               <field name="num_horas"/>

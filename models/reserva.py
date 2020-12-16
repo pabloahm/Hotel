@@ -9,6 +9,8 @@ class Habitaciones(models.Model):
         [('1', 'Simple'), ('2', 'Doble'), ('3', 'Triple'), ('4', 'Cuadruple')], default='1')
     descripcion = fields.Text(string="Descripcion Habitacion")
     precio = fields.Float(string="Precio Día", required=True)
+    habitacion_ids = fields.One2many(
+        'reserva.cliente_reserva', 'habitacion_id')
 
 
 class ClienteReserva(models.Model):
@@ -20,7 +22,9 @@ class ClienteReserva(models.Model):
     fecha_hasta = fields.Date(string="Fecha Termino", required=True)
 
     habitacion_id = fields.Many2one(
-        'reserva.habitaciones', string="Habitacion")
+        'reserva.habitaciones', string="Habitacion",
+        ondelete='restrict',
+    )
 
 
 class Servicio(models.Model):
