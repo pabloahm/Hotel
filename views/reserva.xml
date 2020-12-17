@@ -5,12 +5,12 @@
       <field name="name">Habitaciones</field>
       <field name="model">reserva.habitaciones</field>
       <field name="arch" type="xml">
-        <tree>
-          <field name="tipo"/>
-          <field name="numero"/>
-          <field name="descripcion"/>
-          <field name="precio" widget="monetary" />
-        </tree>
+          <tree>
+            <field name="tipo"/>
+            <field name="name"/>
+            <field name="descripcion"/>
+            <field name="precio"/>
+          </tree>
       </field>
     </record>
 
@@ -20,13 +20,23 @@
       <field name="arch" type="xml">
         <form string="Habitaciones">
           <sheet>
+            <separator string="Habitacion"/>
             <group>
               <field name="tipo"/>
-              <field name="numero"/>
-            </group>
-            <group>
+              <field name="name"/>
               <field name="descripcion"/>
               <field name="precio"/>
+            </group>
+            <separator string="Reserva Clientes"/>
+            <group>
+              <field name="clientereserva_ids" nolabel="1">
+                <tree name="Cliente_Reserva" editable="bottom">
+                  <field name="name"/>
+                  <field name="rut"/>
+                  <field name="fecha_desde"/>
+                  <field name="fecha_hasta"/>
+                </tree>
+              </field>
             </group>
           </sheet>
         </form>
@@ -58,7 +68,7 @@
       <field name="model">reserva.servicio</field>
       <field name="arch" type="xml">
         <tree>
-          <field name="servicio"/>
+          <field name="name"/>
           <field name="capacidad"/>
           <field name="valor_hora"/>
         </tree>
@@ -69,12 +79,25 @@
       <field name="name">Servicios</field>
       <field name="model">reserva.servicio</field>
       <field name="arch" type="xml">
-        <form string="Servicios">
+        <form string="Habitaciones">
           <sheet>
+            <separator string="Servicio"/>
             <group>
-              <field name="servicio"/>
+              <field name="name"/>
               <field name="capacidad"/>
               <field name="valor_hora"/>
+            </group>
+            <separator string="Reservas"/>
+            <group>
+              <field name="servicio_reservas_ids" nolabel="1">
+                <tree name="Reserva Servicio" editable="bottom">
+                  <field name="name"/>
+                  <field name="observacion"/>
+                  <field name="fecha"/>
+                  <field name="hora_desde"/>
+                  <field name="num_horas"/>
+                </tree>
+              </field>
             </group>
           </sheet>
         </form>
@@ -106,7 +129,7 @@
       <field name="model">reserva.cliente_reserva</field>
       <field name="arch" type="xml">
         <tree>
-          <field name="nombre"/>
+          <field name="name"/>
           <field name="rut"/>
           <field name="fecha_desde"/>
           <field name="fecha_hasta"/>
@@ -121,14 +144,16 @@
       <field name="arch" type="xml">
         <form string="Habitaciones">
           <sheet>
+            <Separator string="CLIENTE"/>
             <group>
-              <field name="nombre"/>
+              <field name="name"/>
               <field name="rut"/>
             </group>
+            <Separator string="RESERVA"/>
             <group>
+              <field name="habitacion_id"/>
               <field name="fecha_desde"/>
               <field name="fecha_hasta"/>
-              <field name="habitacion_id"/>
             </group>
           </sheet>
         </form>
@@ -160,7 +185,7 @@
       <field name="model">reserva.servicio_reserva</field>
       <field name="arch" type="xml">
         <tree>
-          <field name="nombre"/>
+          <field name="name"/>
           <field name="observacion"/>
           <field name="servicio_id"/>
           <field name="fecha"/>
@@ -177,7 +202,7 @@
         <form string="Habitaciones">
           <sheet>
             <group>
-            <field name="nombre"/>
+            <field name="name"/>
             <field name="observacion"/>
             </group>
             <group>

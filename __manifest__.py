@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "reserva",
+    'name': "Modulo Reserva",
 
     'summary': """
         Sistema de Control de reserva de habitaciones, y Servicios""",
