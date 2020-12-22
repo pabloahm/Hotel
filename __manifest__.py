@@ -3,10 +3,10 @@
     'name': "Modulo Reserva",
 
     'summary': """
-        Sistema de Control de reserva de habitaciones, y Servicios""",
+        Sistema de Control de reserva de habitaciones, y Servicios Hotel PABAKA""",
 
     'description': """
-        Reserva de habitaciones, sauna, gimnacio, salon tanto para los pasajeros del hotel como para empresas
+        Reserva de habitaciones, sauna, gimnasio, salón tanto para los pasajeros del hotel como para empresas
     """,
 
     'author': "PABAKA",
