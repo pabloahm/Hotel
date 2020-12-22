@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 
 class Habitaciones(models.Model):
@@ -24,6 +25,20 @@ class ClienteReserva(models.Model):
     habitacion_id = fields.Many2one(
         'reserva.habitaciones', string="Habitacion")
 
+#    @api.onchange('habitacion_id', 'fecha_desde', 'fecha_hasta')
+#    def valida_reserva(self):
+#        if self.habitacion_id and self.fecha_desde and self.fecha_hasta:
+#            for reg in self:
+#                if reg.habitacion_id == self.habitacion_id:
+#                     if reg.fecha_desde <= self.fecha_desde <= reg.fecha_hasta:
+#                       raise ValidationError(
+#                        'Habitacion Ocupada en las fechas seleccionadas, Verifique')
+#                     elif reg.fecha_desde <= self.fecha_hasta <= reg.fecha_hasta:
+#                        raise ValidationError(
+#                                'Habitacion Ocupada en las fechas seleccionadas, Verifique')
+#       return {}
+#
+
 
 class Servicio(models.Model):
     _name = 'reserva.servicio'
@@ -42,7 +57,7 @@ class ServicioReserva(models.Model):
     observacion = fields.Char(string="Observaciones")
     fecha = fields.Date(string="Fecha Reserva", required=True)
     hora_desde = fields.Selection(
-        [('8', '08:00'), ('9', '09:00'), ('10', '10:00'), ('11', '11:00'), ('12', '12:00'), ('13', '13:00'), ('14', '14:00'), ('15', '15:00'), ('16', '16:00'),('17','17:00'),('18','18:00'),('19','19:00'),('20','20:00')], default='8')
+        [('8', '08:00'), ('9', '09:00'), ('10', '10:00'), ('11', '11:00'), ('12', '12:00'), ('13', '13:00'), ('14', '14:00'), ('15', '15:00'), ('16', '16:00'), ('17', '17:00'), ('18', '18:00'), ('19', '19:00'), ('20', '20:00')], default='8')
     num_horas = fields.Integer(string="Cantidad Horas", required=True)
 
     servicio_id = fields.Many2one('reserva.servicio', string="Servicio")
